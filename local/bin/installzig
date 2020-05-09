@@ -1,10 +1,14 @@
 #!/bin/bash
+echo "Building from source requires later versions of CLANG and LLVM than Debian packages right now. Installed from binary."
+exit 1
 set -e
 SOURCE="$PREFIX/source/zig"
 if [ ! -d "$SOURCE/.git" ]; then
   git clone https://github.com/ziglang/zig "$SOURCE"
 fi
 cd "$SOURCE"
+git fetch origin
+git reset --hard origin/master
 rm -rf build
 mkdir -p build
 cd build
