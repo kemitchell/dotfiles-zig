@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+SOURCE="$PREFIX/source/zig"
+if [ ! -d "$SOURCE/.git" ]; then
+  git clone https://github.com/ziglang/zig "$SOURCE"
+fi
+cd "$SOURCE"
+rm -rf build
+mkdir -p build
+cd build
+cmake ..
+make install
